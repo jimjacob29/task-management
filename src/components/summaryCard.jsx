@@ -1,4 +1,5 @@
 import Card from "@/components/card";
+import { memo } from "react";
 
 const SummaryCards = ({ title, value, extraStyles = "" }) => {
     return (
@@ -13,4 +14,4 @@ const SummaryCards = ({ title, value, extraStyles = "" }) => {
     );
 };
 
-export default SummaryCards;
+export default memo(SummaryCards);

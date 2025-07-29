@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Card from "./card";
 
 const Toolbar = ({ handleSearch, setOpenModal, searchValue = "", showAddButton = true }) => {
@@ -27,4 +28,4 @@ const Toolbar = ({ handleSearch, setOpenModal, searchValue = "", showAddButton =
     );
 };
 
-export default Toolbar;
+export default memo(Toolbar);

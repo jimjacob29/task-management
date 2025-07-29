@@ -1,6 +1,7 @@
 import { CalendarDaysIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { convertDateToString, isDateOverDue, STATUS, statusBasedStyles } from "@/utils/helper";
 import Card from "@/components/card";
+import { memo } from "react";
 
 export const DataCard = ({ task, handleEditClick, handleDeleteClick, showEditButton = true }) => {
     return (
@@ -45,4 +46,4 @@ export const DataCard = ({ task, handleEditClick, handleDeleteClick, showEditBut
     );
 };
 
-export default DataCard;
+export default memo(DataCard);
