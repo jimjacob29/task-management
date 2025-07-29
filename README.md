@@ -12,7 +12,7 @@ A modern task management web app built using **React** and **Vite**. The app all
 - ✅ Add, edit, delete tasks
 - 📅 Select due dates using a calendar
 - 📌 Categorize tasks by status
-- 🧠 Debounced search & sorting
+- 🧠 Debounced search
 - 💡 Optimized with reusable components and custom hooks
 - 🌙 Modal with portal support and backdrop
 - ✨ Beautiful UI with conditional styling
