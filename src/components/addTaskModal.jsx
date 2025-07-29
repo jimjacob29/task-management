@@ -3,13 +3,13 @@ import { MainContext } from "../context/mainContext";
 import { STATUS } from "../utils/helper";
 import Select from "./Select";
 
-const AddTaskModal = ({ editTaskId, handleAddButton, handleCancelModal, currentStatus = "" }) => {
+const AddTaskModal = ({ handleAddButton, handleCancelModal, currentStatus = "", editTaskId = "" }) => {
     const { getDataFromId } = useContext(MainContext);
     const [loading, setLoading] = useState(!!editTaskId);
     const [taskData, setTaskData] = useState({
         id: "",
         title: "",
-        status: currentStatus !== STATUS?.ALL ? currentStatus : STATUS?.PENDING,
+        status: currentStatus ? (currentStatus !== STATUS?.ALL ? currentStatus : STATUS?.PENDING) : STATUS?.PENDING,
         description: "",
         due_date: "",
     });
@@ -51,6 +51,7 @@ const AddTaskModal = ({ editTaskId, handleAddButton, handleCancelModal, currentS
                     <span className="text-sm text-gray-600">Fill in the details below </span>
                     <form
                         onSubmit={(e) => {
+                            e?.preventDefault();
                             handleAddButton(taskData, e);
                         }}
                         className="flex flex-col gap-3"
@@ -102,22 +103,6 @@ const AddTaskModal = ({ editTaskId, handleAddButton, handleCancelModal, currentS
                                             )
                                     )}
                                 </Select>
-                                {/* <select
-                                    value={taskData?.status}
-                                    className="rounded-[4px] border border-gray-200 p-1"
-                                    id="status"
-                                    name="status"
-                                    onChange={handleChange}
-                                >
-                                    {Object?.values(STATUS)?.map(
-                                        (statusValue) =>
-                                            statusValue !== STATUS?.ALL && (
-                                                <option key={statusValue} value={statusValue}>
-                                                    {statusValue?.replaceAll("_", " ")?.toLowerCase?.()}
-                                                </option>
-                                            )
-                                    )}
-                                </select> */}
                             </div>
                             <div className="flex flex-1 flex-col gap-y-2">
                                 <label className="text-sm" htmlFor="due_date">
@@ -147,11 +132,7 @@ const AddTaskModal = ({ editTaskId, handleAddButton, handleCancelModal, currentS
                                 Cancel
                             </button>
                             <button
-                                disabled={!taskData?.due_date || !taskData?.title}
-                                onClick={(e) => {
-                                    e?.stopPropagation();
-                                    handleAddButton?.(taskData);
-                                }}
+                                // disabled={!taskData?.due_date || !taskData?.title}
                                 className="flex items-center rounded-[4px] bg-blue-500 px-2 py-1 font-semibold text-white"
                                 type="submit"
                             >

@@ -1,6 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import Card from "../../components/card";
-import { dummydata } from "../../utils/constants";
 import { generateUniqueId, STATUS, statusBasedStyles } from "../../utils/helper";
 import Modal from "../../components/modal";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -14,7 +13,7 @@ import AddTaskModal from "../../components/addTaskModal";
 const AllTask = () => {
     const { data, setData } = useContext(MainContext);
     const [currentFilterKey, setCurrentFilterKey] = useState("ALL");
-    const [displayData, setDisplayData] = useState(dummydata);
+    const [displayData, setDisplayData] = useState(data);
     const [editTaskId, setEditTaskID] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const [searchValue, setSearchValue] = useState("");
@@ -129,14 +128,26 @@ const AllTask = () => {
         if (!!sortValue) {
             tempData = getSortData([...tempData], sortValue);
         }
+        if (currentFilterKey !== STATUS.ALL) {
+            tempData = [...tempData]?.filter((task) => task?.status === currentFilterKey);
+        }
         setDisplayData([...tempData]);
     };
 
     const handleAddTaskButton = (newTaskData) => {
         if (newTaskData?.id) {
             setData([...data]?.map((task) => (task?.id === newTaskData?.id ? newTaskData : task)));
-            setDisplayData([...displayData]?.map((task) => (task?.id === newTaskData?.id ? newTaskData : task)));
+            let tempDisplayData = [...displayData]?.map((task) => (task?.id === newTaskData?.id ? newTaskData : task));
+            if (currentFilterKey !== STATUS.ALL) {
+                tempDisplayData = [...tempDisplayData]?.filter((task) => task?.status === currentFilterKey);
+            }
+            if (!!sortKey) {
+                tempDisplayData = getSortData([...tempDisplayData], sortKey);
+            }
+            setDisplayData(tempDisplayData);
         } else {
+            const searchBar = document?.getElementById("search-bar");
+            if (searchBar) searchBar.value = "";
             const tempData = [{ ...newTaskData, id: generateUniqueId() }, ...data];
             setData(tempData);
             setDisplayData(tempData);
@@ -213,7 +224,7 @@ const AllTask = () => {
                             {/* sort dropdown ends */}
                         </div>
                         {/* card starts here */}
-                        {!!searchValue && <span>Search result({displayData?.length})</span>}
+                        {!!searchValue && <span className="=text-sm font-bold">Search result({displayData?.length})</span>}
                         <div className="flex w-full flex-wrap justify-between gap-3">
                             {displayData?.length ? (
                                 displayData?.map((task) => (

@@ -2,7 +2,7 @@ import { CalendarDaysIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/sol
 import { convertDateToString, isDateOverDue, STATUS, statusBasedStyles } from "../utils/helper";
 import Card from "./card";
 
-export const DataCard = ({ task, handleEditClick, handleDeleteClick }) => {
+export const DataCard = ({ task, handleEditClick, handleDeleteClick, showEditButton = true }) => {
     return (
         <div
             key={task?.id}
@@ -29,9 +29,11 @@ export const DataCard = ({ task, handleEditClick, handleDeleteClick }) => {
                             </span>
                         )}
                         <div className="flex gap-2">
-                            <button onClick={handleEditClick}>
-                                <PencilIcon className="h-4 w-4 text-yellow-600" />
-                            </button>
+                            {showEditButton && (
+                                <button onClick={handleEditClick}>
+                                    <PencilIcon className="h-4 w-4 text-yellow-600" />
+                                </button>
+                            )}
                             <button onClick={handleDeleteClick}>
                                 <TrashIcon className="h-4 w-4 text-red-900" />
                             </button>

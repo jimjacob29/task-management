@@ -1,14 +1,14 @@
 import Card from "./card";
 
-const Toolbar = ({ handleSearch, setOpenModal, showAddButton = true }) => {
+const Toolbar = ({ handleSearch, setOpenModal, searchValue = "", showAddButton = true }) => {
     return (
         <Card>
             <div className="flex w-full items-center justify-end gap-2">
                 <input
+                    id="search-bar"
                     onChange={(e) => {
                         handleSearch(e);
                     }}
-                    // value={searchValue}
                     placeholder="Search Tasks"
                     className="rounded-[4px] border border-gray-200 p-1 focus-visible:!border-transparent"
                 />
