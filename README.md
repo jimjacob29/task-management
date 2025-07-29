@@ -1,12 +1,48 @@
-# React + Vite
+# 📋 Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern task management web app built using **React** and **Vite**. The app allows users to create, view, update, and manage tasks with support for title, description, due date, and status.
 
-Currently, two official plugins are available:
+![Vite](https://img.shields.io/badge/Vite-4466f2?style=for-the-badge&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ Add, edit, delete tasks
+- 📅 Select due dates using a calendar
+- 📌 Categorize tasks by status
+- 🧠 Debounced search & sorting
+- 💡 Optimized with reusable components and custom hooks
+- 🌙 Modal with portal support and backdrop
+- ✨ Beautiful UI with conditional styling
+
+---
+
+## 🛠️ Tech Stack
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/) _(if used)_
+- [uuid](https://www.npmjs.com/package/uuid) or `crypto` for unique task IDs
+
+---
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/jimjacob29/task-management.git
+cd task-management
+
+# Install dependencies
+npm install
+# or
+yarn install
+
+npm run dev
+# or
+yarn dev
+```
+
+This will start the app at http://localhost:5173 (default Vite port).
