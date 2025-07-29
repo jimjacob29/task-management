@@ -1,33 +1,39 @@
 import js from "@eslint/js";
-import react from "eslint-plugin-react";
 import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import { defineConfig, globalIgnores } from "eslint/config";
+import pluginReact from "eslint-plugin-react";
+import { defineConfig } from "eslint/config";
+import eslintPluginPrettier from "eslint-plugin-prettier";
 
 export default defineConfig([
-    globalIgnores(["dist"]),
     {
-        files: ["**/*.{js,jsx}"],
-        extends: [js.configs.recommended, react.configs.recommended, reactHooks.configs["recommended-latest"], reactRefresh.configs.vite],
-        languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
-            parserOptions: {
-                ecmaVersion: "latest",
-                ecmaFeatures: { jsx: true },
-                sourceType: "module",
+        files: ["**/*.{js,mjs,cjs,jsx}"],
+        plugins: { react: pluginReact, prettier: eslintPluginPrettier },
+        rules: {
+            // custom rule overrides (optional)
+            ...js.configs.recommended.rules,
+            ...pluginReact.configs.recommended.rules,
+            "react/prop-types": "off",
+            "prettier/prettier": "warn",
+            "react/react-in-jsx-scope": "off",
+        },
+        settings: {
+            react: {
+                version: "detect",
             },
         },
-        plugins: {
-            prettier,
+        ignores: ["dist", "build", "node_modules"],
+        linterOptions: {
+            reportUnusedDisableDirectives: true,
         },
-        rules: {
-            "no-undef": "error",
-            "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
-            "react/jsx-no-target-blank": "off",
-            "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-            "prettier/prettier": "warn",
+        languageOptions: {
+            globals: globals.browser,
+            ecmaVersion: "latest",
+            sourceType: "module",
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
         },
     },
 ]);

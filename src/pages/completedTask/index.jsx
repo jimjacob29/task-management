@@ -24,7 +24,7 @@ const CompletedTask = () => {
     );
 
     const searchData = (e) => {
-        const { value: searchTerm } = e?.target;
+        const { value: searchTerm } = e?.target || {};
         setSearchValue(searchTerm?.trim?.());
         if (!searchTerm?.trim?.()) {
             setDisplayData([...completedData]);

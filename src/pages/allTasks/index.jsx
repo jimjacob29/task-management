@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import Card from "../../components/card";
 import { generateUniqueId, STATUS, statusBasedStyles } from "../../utils/helper";
 import Modal from "../../components/modal";
@@ -76,7 +76,7 @@ const AllTask = () => {
     }, [searchValue, data]);
 
     const searchData = (e) => {
-        const { value: searchTerm } = e?.target;
+        const { value: searchTerm } = e?.target || {};
         setSearchValue(searchTerm?.trim?.());
         if (!searchTerm?.trim?.()) {
             setDisplayData([...data]);
@@ -93,10 +93,10 @@ const AllTask = () => {
 
     const handleFilterData = (statusValue) => {
         let searchIncludedData = [...data];
-        if (!!searchValue) {
+        if (searchValue) {
             searchIncludedData = getSearchData([...searchIncludedData], searchValue);
         }
-        if (!!sortKey) {
+        if (sortKey) {
             searchIncludedData = getSortData([...searchIncludedData], sortKey);
         }
         switch (statusValue) {
@@ -104,16 +104,16 @@ const AllTask = () => {
                 setDisplayData([...searchIncludedData]);
                 break;
             case STATUS.COMPLETED:
-                setDisplayData([...searchIncludedData?.filter((task) => task?.status === STATUS?.COMPLETED)]);
+                setDisplayData([...(searchIncludedData?.filter((task) => task?.status === STATUS?.COMPLETED) || [])]);
                 break;
             case STATUS.IN_PROGRESS:
-                setDisplayData([...searchIncludedData?.filter((task) => task?.status === STATUS.IN_PROGRESS)]);
+                setDisplayData([...(searchIncludedData?.filter((task) => task?.status === STATUS.IN_PROGRESS) || [])]);
                 break;
             case STATUS.OVERDUE:
-                setDisplayData([...searchIncludedData?.filter((task) => task?.status === STATUS.OVERDUE)]);
+                setDisplayData([...(searchIncludedData?.filter((task) => task?.status === STATUS.OVERDUE) || [])]);
                 break;
             case STATUS.PENDING:
-                setDisplayData([...searchIncludedData?.filter((task) => task?.status === STATUS.PENDING)]);
+                setDisplayData([...(searchIncludedData?.filter((task) => task?.status === STATUS.PENDING) || [])]);
                 break;
             default:
                 setDisplayData([...searchIncludedData]);
@@ -122,10 +122,10 @@ const AllTask = () => {
 
     const handleSort = (sortValue) => {
         let tempData = [...data];
-        if (!!searchValue?.trim()) {
+        if (searchValue?.trim()) {
             tempData = getSearchData([...tempData], searchValue);
         }
-        if (!!sortValue) {
+        if (sortValue) {
             tempData = getSortData([...tempData], sortValue);
         }
         if (currentFilterKey !== STATUS.ALL) {
@@ -141,7 +141,7 @@ const AllTask = () => {
             if (currentFilterKey !== STATUS.ALL) {
                 tempDisplayData = [...tempDisplayData]?.filter((task) => task?.status === currentFilterKey);
             }
-            if (!!sortKey) {
+            if (sortKey) {
                 tempDisplayData = getSortData([...tempDisplayData], sortKey);
             }
             setDisplayData(tempDisplayData);
@@ -211,7 +211,7 @@ const AllTask = () => {
                             <Select
                                 value={sortKey}
                                 onChange={(e) => {
-                                    const { value } = e?.target;
+                                    const { value } = e?.target || {};
                                     setSortKey(value);
                                     handleSort(value);
                                 }}

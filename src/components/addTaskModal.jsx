@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { MainContext } from "../context/mainContext";
-import { STATUS } from "../utils/helper";
+import { isDateOverDue, STATUS } from "../utils/helper";
 import Select from "./Select";
 
 const AddTaskModal = ({ handleAddButton, handleCancelModal, currentStatus = "", editTaskId = "" }) => {
@@ -15,7 +15,7 @@ const AddTaskModal = ({ handleAddButton, handleCancelModal, currentStatus = "", 
     });
 
     const handleChange = (e) => {
-        const { name, value } = e?.target;
+        const { name, value } = e?.target || {};
         const tempTaskData = { ...taskData };
         if (value === "due_date" && taskData?.status === STATUS?.OVERDUE && !isDateOverDue(value)) {
             tempTaskData.status = STATUS?.PENDING;
@@ -29,7 +29,7 @@ const AddTaskModal = ({ handleAddButton, handleCancelModal, currentStatus = "", 
         setLoading(true);
         try {
             const idData = getDataFromId(editTaskId);
-            if (!!idData?.length) {
+            if (idData?.length) {
                 setTaskData({
                     ...taskData,
                     ...idData[0],
