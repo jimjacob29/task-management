@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from "@/components/card";
 
 const SummaryCards = ({ title, value, extraStyles = "" }) => {
     return (

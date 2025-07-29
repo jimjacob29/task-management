@@ -1,6 +1,6 @@
 import { CalendarDaysIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
-import { convertDateToString, isDateOverDue, STATUS, statusBasedStyles } from "../utils/helper";
-import Card from "./card";
+import { convertDateToString, isDateOverDue, STATUS, statusBasedStyles } from "@/utils/helper";
+import Card from "@/components/card";
 
 export const DataCard = ({ task, handleEditClick, handleDeleteClick, showEditButton = true }) => {
     return (

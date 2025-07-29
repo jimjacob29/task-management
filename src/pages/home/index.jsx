@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router";
-import Card from "../../components/card";
+import Card from "@/components/card";
 const tabs = [
     { path: ".", label: "All Tasks" },
     { path: "completed", label: "Completed" },

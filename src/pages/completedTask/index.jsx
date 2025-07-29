@@ -1,12 +1,12 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import Toolbar from "../../components/toolbar";
-import { MainContext } from "../../context/mainContext";
-import { generateUniqueId, STATUS } from "../../utils/helper";
-import DataCard from "../../components/dataCard";
-import { useDebounce } from "../../hooks/useDebounce";
-import Card from "../../components/card";
-import Modal from "../../components/modal";
-import AddTaskModal from "../../components/addTaskModal";
+import Toolbar from "@/components/toolbar";
+import { MainContext } from "@/context/mainContext";
+import { generateUniqueId, STATUS } from "@/utils/helper";
+import DataCard from "@/components/dataCard";
+import { useDebounce } from "@/hooks/useDebounce";
+import Card from "@/components/card";
+import Modal from "@/components/modal";
+import AddTaskModal from "@/components/addTaskModal";
 
 const CompletedTask = () => {
     const { data, setData } = useContext(MainContext);

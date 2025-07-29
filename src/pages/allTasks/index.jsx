@@ -1,14 +1,14 @@
 import { useCallback, useContext, useMemo, useState } from "react";
-import Card from "../../components/card";
-import { generateUniqueId, STATUS, statusBasedStyles } from "../../utils/helper";
-import Modal from "../../components/modal";
-import { useDebounce } from "../../hooks/useDebounce";
+import Card from "@/components/card";
+import { generateUniqueId, STATUS, statusBasedStyles } from "@/utils/helper";
+import Modal from "@/components/modal";
+import { useDebounce } from "@/hooks/useDebounce";
 import { MainContext } from "../../context/mainContext";
-import Toolbar from "../../components/toolbar";
-import SummaryCards from "../../components/summaryCard";
-import Select from "../../components/Select";
-import DataCard from "../../components/dataCard";
-import AddTaskModal from "../../components/addTaskModal";
+import Toolbar from "@/components/toolbar";
+import SummaryCards from "@/components/summaryCard";
+import Select from "@/components/Select";
+import DataCard from "@/components/dataCard";
+import AddTaskModal from "@/components/addTaskModal";
 
 const AllTask = () => {
     const { data, setData } = useContext(MainContext);

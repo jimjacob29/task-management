@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { MainContext } from "../context/mainContext";
-import { isDateOverDue, STATUS } from "../utils/helper";
-import Select from "./Select";
+import { MainContext } from "@/context/mainContext";
+import { isDateOverDue, STATUS } from "@/utils/helper";
+import Select from "@/components/select";
 
 const AddTaskModal = ({ handleAddButton, handleCancelModal, currentStatus = "", editTaskId = "" }) => {
     const { getDataFromId } = useContext(MainContext);
