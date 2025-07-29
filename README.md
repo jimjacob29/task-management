@@ -23,7 +23,7 @@ A modern task management web app built using **React** and **Vite**. The app all
 
 - [React](https://reactjs.org/)
 - [Vite](https://vitejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/) _(if used)_
+- [Tailwind CSS](https://tailwindcss.com/)
 - [uuid](https://www.npmjs.com/package/uuid) or `crypto` for unique task IDs
 
 ---
