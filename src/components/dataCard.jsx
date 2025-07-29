@@ -12,7 +12,7 @@ export const DataCard = ({ task, handleEditClick, handleDeleteClick, showEditBut
                 <div className="flex h-full flex-col gap-1">
                     <span className="pl-1 text-lg font-semibold">{task?.title}</span>
                     <span
-                        className={`${statusBasedStyles?.[task?.status]?.background} ${statusBasedStyles?.[task?.status]?.text} w-[50%] rounded-full px-2 py-1 text-sm font-semibold`}
+                        className={`${statusBasedStyles?.[task?.status]?.background} ${statusBasedStyles?.[task?.status]?.text} w-full rounded-full px-2 py-1 text-sm font-semibold sm:w-[50%]`}
                     >
                         {task?.status?.replaceAll("_", " ")}
                     </span>

@@ -3,7 +3,7 @@ import Card from "./card";
 const Toolbar = ({ handleSearch, setOpenModal, searchValue = "", showAddButton = true }) => {
     return (
         <Card>
-            <div className="flex w-full items-center justify-end gap-2">
+            <div className="flex w-full flex-col justify-end gap-2 sm:flex-row sm:items-center">
                 <input
                     id="search-bar"
                     onChange={(e) => {
@@ -17,7 +17,7 @@ const Toolbar = ({ handleSearch, setOpenModal, searchValue = "", showAddButton =
                         onClick={() => {
                             setOpenModal(true);
                         }}
-                        className="flex items-center gap-1 rounded-[4px] bg-blue-500 px-2 py-1 font-semibold text-white"
+                        className="flex max-w-[100px] items-center gap-1 rounded-[4px] bg-blue-500 px-2 py-1 font-semibold text-white"
                     >
                         + Add task
                     </button>
