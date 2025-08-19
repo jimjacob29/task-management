@@ -18,6 +18,7 @@ const AllTask = () => {
     const [openModal, setOpenModal] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [sortKey, setSortKey] = useState("");
+    const [autoCompleteData, setAutoCompleteData] = useState([]);
 
     const getSearchData = useCallback(
         (dataArray = data, search = searchValue) => {
@@ -161,7 +162,24 @@ const AllTask = () => {
 
     return (
         <div className="flex w-full flex-1 flex-col gap-2 overflow-hidden">
-            <Toolbar handleSearch={handleSearch} setOpenModal={setOpenModal} />
+            <Toolbar
+                autoCompleteData={autoCompleteData || []}
+                handleSearch={(e) => {
+                    const { value } = e?.target;
+                    const tempAutoCompleteData = data?.filter((task) => task?.title?.toLowerCase?.()?.includes(value?.toLowerCase?.()));
+                    if (tempAutoCompleteData?.length && !!value) {
+                        setAutoCompleteData(
+                            tempAutoCompleteData?.sort((a, b) => {
+                                return b - a;
+                            })
+                        );
+                    } else {
+                        setAutoCompleteData([]);
+                    }
+                    handleSearch(e);
+                }}
+                setOpenModal={setOpenModal}
+            />
             <Card className="relative flex-1 overflow-y-auto">
                 <>
                     {/* start of summary card */}
